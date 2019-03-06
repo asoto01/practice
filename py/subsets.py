@@ -1,0 +1,1 @@
+# Given a list of data retrun all possible subsets of data.
