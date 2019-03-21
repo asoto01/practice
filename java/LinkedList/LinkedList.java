@@ -43,24 +43,28 @@ public class LinkedList {
 	}
 	// delete element in list by value
 	public static LinkedList delete(LinkedList list, int data) {
-		// store head node
+		// store head node, and previous node reference
 		Node currNode = list.head, prev = null;
+		// check if data is found in head
 		if (currNode != null && currNode.data == data) {
 			list.head = currNode.next; // changed head
 			System.out.println(data + " found and deleted");
 			return list;
 		}
+		// check if current node is not null and not the data being searched
+		// keep track of previous node by storing current and setting current node to next node
 		while (currNode != null && currNode.data != data) {
 			prev = currNode;
 			currNode = currNode.next;
 		}
+		// current 
 		if (currNode != null) {
 			prev.next = currNode.next;
 			System.out.println(data + " found and deleted");
 		}
 		if(currNode == null) {
 			System.out.println(data + " not found");
-		}	
+		}
 		
 		return list;
 	}
