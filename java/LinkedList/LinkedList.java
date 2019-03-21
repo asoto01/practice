@@ -28,24 +28,53 @@ public class LinkedList {
 	}
 	// print elements in the list
 	public static void print(LinkedList list) {
-		// create a reference to the head
+		// create a reference to the head which will serve as current node
 		Node current = list.head;
 		// if current is null display message
 		if (current == null) {
-			System.out.println("There are no items in the list.");
+			System.out.println("There are no items print.");
 		} else {
 			while (current.next != null) {
 				System.out.print(current.data + " ");
 				current = current.next;
 			}
-			System.out.print(current.data + " ");
+			System.out.println(current.data);
 		}
 	}
+	// delete element in list by value
+	public static LinkedList delete(LinkedList list, int data) {
+		// store head node
+		Node currNode = list.head, prev = null;
+		if (currNode != null && currNode.data == data) {
+			list.head = currNode.next; // changed head
+			System.out.println(data + " found and deleted");
+			return list;
+		}
+		while (currNode != null && currNode.data != data) {
+			prev = currNode;
+			currNode = currNode.next;
+		}
+		if (currNode != null) {
+			prev.next = currNode.next;
+			System.out.println(data + " found and deleted");
+		}
+		if(currNode == null) {
+			System.out.println(data + " not found");
+		}	
+		
+		return list;
+	}
+
 	public static void main(String[] args) {
 		LinkedList ls = new LinkedList();
-		insert(ls, 1);
-		insert(ls, 2);
-		insert(ls, 3);
+		LinkedList list = new LinkedList();
+		ls = insert(ls, 1);
+		ls = insert(ls, 2);
+		ls = insert(ls, 3);
+		ls = insert(ls, 4);
+		print(ls);
+		ls = delete(ls,2);
+		System.out.println();
 		print(ls);
 	}
 }
